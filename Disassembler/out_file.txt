@@ -1,0 +1,5 @@
+push rcx
+out
+push 15
+hlt
+pop rbx
