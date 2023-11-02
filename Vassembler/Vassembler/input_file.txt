@@ -1,0 +1,2 @@
+push 3   #check
+add 3 #bye
