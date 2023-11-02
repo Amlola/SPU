@@ -92,3 +92,8 @@ AsmError FillBuffer(VAssembler* ass, int arg, FILE* listing, size_t Nstring, siz
 
 AsmError WorkWithArgument(String* text, size_t Nstring, size_t Ncomand, VAssembler* ass, Label* label, FILE* listing);
 
+bool HaveComment(String* text, size_t Nstring);
+
+void WithoutComment(String* text, size_t Nstring);
+
+bool IsClear(char comand[]);

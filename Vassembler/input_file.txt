@@ -1,1 +1,9 @@
-push $
+push 3
+push 2
+ja ans
+hlt
+
+ans:
+    add
+    out
+    hlt

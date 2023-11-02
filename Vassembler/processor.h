@@ -20,5 +20,4 @@ void Proccesor(char* Buffer, long long BufSize, CPU* processor);
 
 static double GetArg(CPU* processor, size_t ip, char* Buffer);
 
-bool check(double i, double j);
-
+static int CmpDouble(const double a, const double b); 

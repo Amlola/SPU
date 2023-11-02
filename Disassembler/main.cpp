@@ -6,7 +6,7 @@ int main()
 
     Text data = {};
 
-    FILE* file = fopen("output_file_bin.bin", "rb");
+    FILE* file = fopen("../Vassembler/output_file_bin.bin", "rb");
     assert(file);
     
     long long BufferSize = GetFileSize(file);

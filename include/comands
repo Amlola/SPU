@@ -1,4 +1,22 @@
-DEF_CMD(IN, 0, false,
+/*#define JUMP(sign)                          \
+	double value1 = 0, value2 = 0;           \
+											\
+	POP(value1);							\
+	POP(value2);								\
+	PUSH(value2);								\
+	PUSH(value1);								\
+												\
+	if (CmpDouble(value2, value1) < 0)	!!!!!		\
+		{										\
+		double arg = 0;							\
+		arg = GetArg(processor, ip, Buffer);	\
+    	return arg;								\
+		}										\
+												\
+	return ip + sizeof(int);					\*/
+
+
+DEF_CMD(IN, 0, false, "in",
 	{
 	double value1 = 0;
 	scanf("%lf", &value1);
@@ -6,7 +24,7 @@ DEF_CMD(IN, 0, false,
 	})
 
 
-DEF_CMD(PUSH, 1, true,
+DEF_CMD(PUSH, 1, true, "push",
 	{
 	double value1 = 0;
 	value1 = GetArg(processor, ip, Buffer);
@@ -25,11 +43,12 @@ DEF_CMD(PUSH, 1, true,
 	})
 
 
-DEF_CMD(OUT, 2, false,
+DEF_CMD(OUT, 2, false, "out",
 	{
 	double value1 = 0;
 	POP(value1);
-	if (check(value1, 0))
+
+	if (CmpDouble(value1, 0) == 0)
 		{
 		printf("%lf\n", fabs(value1));
 		}
@@ -41,7 +60,7 @@ DEF_CMD(OUT, 2, false,
 	})
 
 
-DEF_CMD(ADD, 3, false,
+DEF_CMD(ADD, 3, false, "add",
 	{
 	double value1 = 0, value2 = 0;
 	POP(value1);
@@ -50,7 +69,7 @@ DEF_CMD(ADD, 3, false,
 	})
 
 
-DEF_CMD(SUB, 4, false,
+DEF_CMD(SUB, 4, false, "sub",
 	{
 	double value1 = 0, value2 = 0;
 	POP(value1);
@@ -59,7 +78,7 @@ DEF_CMD(SUB, 4, false,
 	})
 
 
-DEF_CMD(MULT, 5, false,
+DEF_CMD(MULT, 5, false, "mult",
 	{
 	double value1 = 0, value2 = 0;
 	POP(value1);
@@ -68,7 +87,7 @@ DEF_CMD(MULT, 5, false,
 	})
 
 
-DEF_CMD(DIV, 6, false,
+DEF_CMD(DIV, 6, false, "div",
 	{
 	double value1 = 0, value2 = 0;
 	POP(value1);
@@ -77,14 +96,13 @@ DEF_CMD(DIV, 6, false,
 	if (value1 == 0) 
 		{
 		printf("division by 0");
-		abort();
 		}
 
 	PUSH(value2 / value1);
 	})
 
 
-DEF_CMD(SQRT, 7, false,
+DEF_CMD(SQRT, 7, false, "sqrt",
 	{
 	double value1 = 0;
 	POP(value1);
@@ -92,7 +110,7 @@ DEF_CMD(SQRT, 7, false,
 	})
 
 
-DEF_CMD(SIN, 8, false,
+DEF_CMD(SIN, 8, false, "sin",
 	{
 	double value1 = 0;
 	POP(value1);
@@ -100,7 +118,7 @@ DEF_CMD(SIN, 8, false,
 	})
 
 
-DEF_CMD(COS, 9, false,
+DEF_CMD(COS, 9, false, "cos",
 	{
 	double value1 = 0;
 	POP(value1);
@@ -108,13 +126,13 @@ DEF_CMD(COS, 9, false,
 	})
 
 
-DEF_CMD(HLT, 10, false,
+DEF_CMD(HLT, 10, false, "hlt",
 	{
 	return EndOfProgram;
 	})
 
 
-DEF_CMD(POP, 11, true,
+DEF_CMD(POP, 11, true, "pop",
 	{
 	int value1 = 0;
 	value1 = (int)GetArg(processor, ip, Buffer);
@@ -132,7 +150,7 @@ DEF_CMD(POP, 11, true,
 	})
 
 
-DEF_CMD(JMP, 12, true,
+DEF_CMD(JMP, 12, true, "jmp",
 	{
 	double arg = 0;
 	arg = GetArg(processor, ip, Buffer);
@@ -140,109 +158,127 @@ DEF_CMD(JMP, 12, true,
 	})
 
 
-DEF_CMD(JA, 13, true,
+DEF_CMD(JA, 13, true, "ja",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1);
-	if (value2 < value1)
+
+	if (CmpDouble(value2, value1) < 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(JAE, 14, true,
+DEF_CMD(JAE, 14, true, "jae",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1);
-	if (value2 <= value1)
+
+	if (CmpDouble(value2, value1) <= 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(JB, 15, true,
+DEF_CMD(JB, 15, true, "jb",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1);
-	if (value1 < value2)
+
+	if (CmpDouble(value2, value1) > 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(JBE, 16, true,
+DEF_CMD(JBE, 16, true, "jbe",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1);
-	if (value1 <= value2)
+	
+	if (CmpDouble(value2, value1) >= 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(JE, 17, true,
+DEF_CMD(JE, 17, true, "je",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1);
-	if (value1 == value2)
+
+	if (CmpDouble(value2, value1) == 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(JNE, 18, true,
+DEF_CMD(JNE, 18, true, "jne",
 	{
 	double value1 = 0, value2 = 0;
+
 	POP(value1);
 	POP(value2);
 	PUSH(value2);
 	PUSH(value1); 
-	if (value1 != value2)
+
+	if (CmpDouble(value2, value1) != 0)
 		{
 		double arg = 0;
 		arg = GetArg(processor, ip, Buffer);
     	return arg;
 		}
+
 	return ip + sizeof(int);
 	})
 
 
-DEF_CMD(CALL, 19, true,
+DEF_CMD(CALL, 19, true, "call",
 	{
 	double arg = 0;
 	arg = GetArg(processor, ip, Buffer);
@@ -251,7 +287,7 @@ DEF_CMD(CALL, 19, true,
 	})
 
 
-DEF_CMD(RET, 20, false,
+DEF_CMD(RET, 20, false, "ret",
 	{
 	double arg = 0;
 	StackPop(&processor->stkCall, &arg);
@@ -259,7 +295,8 @@ DEF_CMD(RET, 20, false,
 	})
 
 
-DEF_CMD(DRAW, 21, false,
+
+DEF_CMD(DRAW, 21, false, "draw",
 	{
 	for (size_t i = 0; i < RAM_size; i++) 
 		{
@@ -288,7 +325,7 @@ DEF_CMD(DRAW, 21, false,
 
 
 
-DEF_CMD(INT, 22, false,
+DEF_CMD(FLOOR, 22, false, "floor",
 	{
 	double arg = 0;
 	POP(arg);

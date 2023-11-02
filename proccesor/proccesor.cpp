@@ -4,12 +4,14 @@
 
 #define POP(arg1)      StackPop (&processor->stk, &arg1)
 
-#define DEF_CMD(name, num, have_arg, ...)      \
-    {                                          \
-	case name:					               \
-		__VA_ARGS__					           \
-		break;						           \
-    }                                          
+#define DEF_CMD(name, num, have_arg, str_name, ...)      \
+    {                                                    \
+	case name:					                         \
+		__VA_ARGS__					                     \
+		break;						                     \
+    }     
+
+#define SIGN(x) ((x > 0) - (x < 0));                                    
 
 
 void Proccesor(char* Buffer, long long BufferSize, CPU* processor) 
@@ -28,7 +30,7 @@ void Proccesor(char* Buffer, long long BufferSize, CPU* processor)
 
         ip = Calcul(processor, Buffer, BufferSize, ip);
 
-        StackDump(&processor->stk);
+        //StackDump(&processor->stk);
 
         //printf("%d\n", ip);
 
@@ -40,7 +42,6 @@ void Proccesor(char* Buffer, long long BufferSize, CPU* processor)
 
     StackDtor(&processor->stkCall);
     StackDtor(&processor->stk);
-
     }
 
 
@@ -48,11 +49,10 @@ static int Calcul(CPU* processor, char* Buffer, long long BufferSize, size_t ip)
     {
     switch (processor->code & COMMAND_MASK)
         {
-        #include "..\include\comands.py"
+        #include "..\include\comands"
 
         default:
             printf("unknown command");
-            //abort();
         }
 
     return ip;
@@ -61,12 +61,6 @@ static int Calcul(CPU* processor, char* Buffer, long long BufferSize, size_t ip)
 
 #undef DEF_CMD
 
-
-bool check(double i, double j)
-    {
-    const double EPS = 1e-9;
-    return fabs(i - j) < EPS;
-    }
 
 
 static double GetArg(CPU* processor, size_t ip, char* Buffer)
@@ -84,4 +78,18 @@ static double GetArg(CPU* processor, size_t ip, char* Buffer)
         }
     
     return value1;
+    }
+
+
+
+static int CmpDouble(const double a, const double b) 
+    {
+    const double EPS = 1e-9;
+
+    if (fabs(b - a) < EPS) 
+        {
+        return 0;
+        }
+
+    return SIGN(a - b);
     }

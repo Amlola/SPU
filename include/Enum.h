@@ -30,19 +30,6 @@ enum MaxLen
 
 
 
-#define DEF_CMD(name, num, have_arg, ...)  \
-        name = num,
-
-enum comand
-    {
-    #include "comands.py"
-    };
-
-#undef DEF_CMD
-
-
-
-
 typedef struct 
     {
     int code;           
@@ -50,72 +37,39 @@ typedef struct
     int arg;    
     } Comand;
 
-/*#define DEF_CMD(name, num, have_arg, ...)  \
-        num, tolower(name), have_arg
+#define DEF_CMD(name, num, have_arg, str_name, ...)  \
+        {num, str_name, have_arg},
 
-const Comand CMD_LIST[] = 
+const Comand CMD_LIST[] =
     {
-    {0,  "in",    0},
-    {1,  "push",  1},
-    {2,  "out",   0},
-    {3,  "add",   0},
-    {4,  "sub",   0},
-    {5,  "mult",  0},
-    {6,  "div",   0},
-    {7,  "sqrt",  0},
-    {8,  "sin",   0},
-    {9,  "cos",   0},
-    {10, "hlt",   0},
-    {11, "pop",   1},
-    {12, "jmp",   1},
-    {13, "ja",    1},
-    {14, "jae",   1},
-    {15, "jb",    1},
-    {16, "jbe",   1},
-    {17, "je",    1},
-    {18, "jne",   1},
-    {19, "call",  1},
-    {20, "ret",   0},
+    #include "comands"
     };
 
-#undef DEF_CMD*/
+#undef DEF_CMD
 
 
-const Comand CMD_LIST[] = 
+
+
+#define DEF_CMD(name, num, have_arg, str_name, ...)  \
+        name = num,
+
+enum comand
     {
-    {0,  "in",    0},
-    {1,  "push",  1},
-    {2,  "out",   0},
-    {3,  "add",   0},
-    {4,  "sub",   0},
-    {5,  "mult",  0},
-    {6,  "div",   0},
-    {7,  "sqrt",  0},
-    {8,  "sin",   0},
-    {9,  "cos",   0},
-    {10, "hlt",   0},
-    {11, "pop",   1},
-    {12, "jmp",   1},
-    {13, "ja",    1},
-    {14, "jae",   1},
-    {15, "jb",    1},
-    {16, "jbe",   1},
-    {17, "je",    1},
-    {18, "jne",   1},
-    {19, "call",  1},
-    {20, "ret",   0},
-    {21, "draw",  0},
-    {22, "int",  0},
+    #include "comands"
     };
 
+#undef DEF_CMD
 
 
 
-const char REG_LIST[][NRegistr] = {
-    {"rax"},
-    {"rbx"},
-    {"rcx"},
-    {"rdx"}};
+
+const char* const REG_LIST[NRegistr] =
+    {
+    "rax",
+    "rbx",
+    "rcx",
+    "rdx"
+    };
 
 
 
@@ -128,5 +82,3 @@ typedef enum
     REG = 1 << 6,
     RAM = 1 << 7
     } Arguments;
-
-

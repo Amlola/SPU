@@ -13,4 +13,4 @@ Hamlet.o: Hamlet.cpp
 	g++ -c Hamlet.cpp
 
 clean:
-	rm *.o ass2
+	rm *.o ass2.exe

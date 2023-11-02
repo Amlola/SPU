@@ -14,6 +14,11 @@ AsmError Assembler(FILE* file_to_bin, FILE* listing, String* text, Text* data, L
 
    for (size_t Nstring = 0; Nstring < data->count_n; Nstring++)
         {
+        if (HaveComment(text, Nstring)) 
+            {
+            WithoutComment(text, Nstring);
+            }
+
         ParseInstruction(listing, text, Nstring, label, ass);
         } 
     
@@ -33,14 +38,8 @@ AsmError ParseInstruction(FILE* listing, String* text, size_t Nstring, Label* la
 
     sscanf(((text + Nstring)->adress), "%s", &comand);
 
-    bool find_comand = false;
-
-    bool isMark = false;
-
     if (IsMark(comand))
         {
-        isMark = true;
-
         comand[strlen(comand) - 1] = '\0';
 
         AddLabel(comand, label, ass->ip);
@@ -52,15 +51,13 @@ AsmError ParseInstruction(FILE* listing, String* text, size_t Nstring, Label* la
         {  
         if (strcmp(comand, CMD_LIST[Ncomand].name_comand) == 0)
             {
-            find_comand = true;
-
             WorkWithComand(text, Nstring, Ncomand, ass, label, listing);
 
-            break;
+            return SUCCESS;
             }
         }
 
-    if (!find_comand && !isMark && ass->status == GoAssembler && comand[0] != '\0')
+    if (ass->status == GoAssembler && !IsClear(comand))
         {
         printf("%s line: %d\n", VAASMERROR[UNKNOWN_COMAND], Nstring);
 
@@ -115,22 +112,22 @@ AsmError WorkWithArgument(String* text, size_t Nstring, size_t Ncomand, VAssembl
 
 AsmError ParseArgument(FILE* listing, char arg[], VAssembler* ass, Label* label, String* text, size_t Nstring, size_t Ncomand)
     {
-    int Intarg = 0;
+    int IntArg = 0;
 
     char StrArg[MaxLenArg] = "";
 
-    if (sscanf(arg, "%d", &Intarg) == 1) 
+    if (sscanf(arg, "%d", &IntArg) == 1) 
         { 
         ass->machine_code |= IMM;
 
-        FillBuffer(ass, Intarg, listing, Nstring, Ncomand);
+        FillBuffer(ass, IntArg, listing, Nstring, Ncomand);
         } 
 
-    else if (sscanf(arg, "[%d]", &Intarg) == 1) 
+    else if (sscanf(arg, "[%d]", &IntArg) == 1) 
         { 
         ass->machine_code |= IMM | RAM;
 
-        FillBuffer(ass, Intarg, listing, Nstring, Ncomand);
+        FillBuffer(ass, IntArg, listing, Nstring, Ncomand);
         } 
 
     else if (sscanf(arg, "[%[a-z]]", &StrArg) == 1) 
@@ -142,7 +139,7 @@ AsmError ParseArgument(FILE* listing, char arg[], VAssembler* ass, Label* label,
 
     else if (sscanf(arg, "%s", &StrArg) == 1) 
         {
-        if (IsReg(StrArg, &Intarg)) 
+        if (IsReg(StrArg, &IntArg)) 
             {
             ass->machine_code |= REG;
 
@@ -306,16 +303,6 @@ bool CheckArgument(size_t j)
     }
 
 
-
-void WriteToBuffer(VAssembler* ass, FILE* file) 
-    {
-    fwrite(ass->Buffer, sizeof(char), ass->ip, file);
-    
-    free(ass->Buffer);
-    }
-
-
-
 bool IsReg(char StrArg[], int* arg)
     {  
     for (size_t i = 0; i < sizeof(REG_LIST) / sizeof(*REG_LIST); i++) 
@@ -338,4 +325,40 @@ bool IsReg(char StrArg[], int* arg)
 bool IsMark(char string[]) 
     {
     return strchr(string, ':') != nullptr;
+    }
+
+
+
+bool HaveComment(String* text, size_t Nstring)
+    {
+    return strchr((text + Nstring)->adress, '#') != nullptr;
+    }
+
+
+
+void WithoutComment(String* text, size_t Nstring) 
+    {
+    for (size_t i = 0; (text + Nstring)->adress[i] != '\0'; i++) 
+        {
+        if ((text + Nstring)->adress[i] == '#') 
+            {
+            (text + Nstring)->adress[i] = '\0';
+            }
+        }
+    }
+
+
+
+void WriteToBuffer(VAssembler* ass, FILE* file) 
+    {
+    fwrite(ass->Buffer, sizeof(char), ass->ip, file);
+    
+    free(ass->Buffer);
+    }
+
+
+
+bool IsClear(char comand[]) 
+    {
+    return comand[0] == '\0';
     }

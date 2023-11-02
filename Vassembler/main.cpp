@@ -45,6 +45,8 @@ int main(int argc, char* argv[])
 
     Assembler(file_output_bin, listing, data.str, &data, &label, &ass);
 
+    free(ass.Buffer);
+
     VAssemblerInit(&ass, &data);
     
     ass.status = GoAssembler;

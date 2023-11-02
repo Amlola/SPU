@@ -1,49 +1,39 @@
-push 9
-    pop rax
+call initial_conditions
+call center_coord
 
-    push 10
-    pop rbx
-
-    push 6
-    pop rcx
-
-    push 0
-    pop rdx
 
 again:
-    call circle
+    call draw_circle
 
-    push 44
-    push 7
-    div
-    push rdx
-
-    jb again
-    draw
-
-    hlt
-
-circle:
-    call get_x
-    call get_y
-
-    push rax
-    push rbx
-    push 20
-    mult
-    add
-    pop rax
-    push 1
-    pop [rax]
-
-    push 9
-    pop rax
-
-    push 10
-    pop rbx
+    push 44      #
+    push 7       #
+                 # проверяем, что угол меньше 2п
+    div          #
+    push rdx     # 
+                 #
+    jb again     # возвращаемся к call draw_circle 
+    
+    draw         # рисуем круг
+hlt
 
 
-    push rdx
+
+draw_circle:
+    call get_x   # получаем x координату
+    call get_y   # получаем y координату
+
+    push rax     #
+    push rbx     #
+    push 20      # матричная формула
+    mult         #
+    add          #
+
+    pop rax 
+    push 1      
+    pop [rax]    
+
+    call center_coord
+
     push 44
     push 7
     div
@@ -52,32 +42,47 @@ circle:
     push rdx
     add
     pop rdx
+ret
 
-
-    ret
 
 get_x:
     push rax
     push rcx
     push rdx
-    cos
-    mult
-    add
+    cos          #
+    mult         # x = x_0 + cosa
+    add          #
 
     pop rax
+ret
 
-    ret
 
 get_y:
     push rbx
     push rcx
     push rdx
-    sin
-    mult
-    int
-    add
-
+    sin          #
+    mult         # y = y_0 + sina
+    floor        #
+    add    
 
     pop rbx
+ret
 
-    ret
+
+initial_conditions:
+    push 6       # радиус
+    pop rcx
+
+    push 0       # начальный угол
+    pop rdx
+ret
+
+
+center_coord: 
+    push 9       # x центра
+    pop rax
+
+    push 10      # y центра 
+    pop rbx
+ret
