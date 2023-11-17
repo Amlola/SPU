@@ -63,21 +63,45 @@ static int Calcul(CPU* processor, char* Buffer, long long BufferSize, size_t ip)
 
 
 
-static double GetArg(CPU* processor, size_t ip, char* Buffer)
+static double* GetArg(CPU* processor, size_t ip, char* Buffer)
     {
-    double value1 = 0;
+    double* value = NULL;
 
-    if (processor->code & REG) 
+    int arg = 0;
+
+    if (processor->code & RAM) 
         {
-        value1 = processor->RegistrArray[Buffer[ip] - 1];
+        if (processor->code & REG) 
+            {
+            arg = processor->RegistrArray[Buffer[ip] - 1];
+
+            value = (double*)(&(processor->RAM[arg]));
+            }
+        
+        else if (processor->code & IMM) 
+            {
+            arg = *(int*)(Buffer + ip);
+
+            value = (double*)(&(processor->RAM[arg]));
+            }
         }
-    
+
     else if (processor->code & IMM)
         {
-        value1 = *(int*)(Buffer + ip);
+        arg = *(int*)(Buffer + ip);
+
+        value = (double*)(&(arg));
         }
+
+    else if (processor->code & REG) 
+        {
+        arg = processor->RegistrArray[Buffer[ip] - 1];
+
+        value = (double*)(&(arg));
+        }
+
     
-    return value1;
+    return value;
     }
 
 

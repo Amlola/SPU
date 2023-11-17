@@ -20,7 +20,7 @@ typedef unsigned long long canary_type;
 #define LEFTCANARYDATA *(canary_type*)((char*)stk->stack_data - sizeof(canary_type))
 
 #define CHECKERROR(stk)                                  \
-                    if (StackOK(stk) != NO_ERROR)        \
+                    if (StackOK(stk) != NO_ERROR1)        \
                         {                                \
                         ON_DUMP                          \
                             (                            \
@@ -54,7 +54,7 @@ typedef unsigned long long canary_type;
 
 typedef enum
     {
-    NO_ERROR                   = 0,
+    NO_ERROR1                   = 0,
     NULL_STACK                 = 1 << 0,
 	NULL_DATA                  = 1 << 1,
 	SIZE_LESS_THAN_ZERO        = 1 << 2,
@@ -69,19 +69,19 @@ typedef enum
 	USE_STACK_AFTER_DESTROY    = 1 << 11,
     POP_NULL                   = 1 << 12,
     WRONG_NEW_SIZE             = 1 << 13,
-    NUMBER_OF_ERROR            = 14,
-    }ERROR; //выравнить
+    NUMBER_OF_ERROR            = 14
+    }ERROR123;
 
 
 typedef struct 
     {
-    ERROR CodeError;
+    ERROR123 CodeError;
     const char* NameError;
     }STACK_STATUS;
 
 
 const STACK_STATUS ErrorArray[] = {
-    {NO_ERROR, "NO ERROR"},
+    {NO_ERROR1, "NO ERROR"},
     {NULL_STACK, "NULL STACK"},
     {NULL_DATA, "NULL DATA"},
     {SIZE_LESS_THAN_ZERO, "SIZE LESS THAN ZERO"},

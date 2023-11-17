@@ -1,0 +1,380 @@
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x554 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:52:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:53:00
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x554 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:52:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:53:01
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x220 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:52:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:54:40
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x220 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:52:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:54:40
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x5298 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:55:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:55:40
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x5298 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:55:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 03:55:40
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x5470 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:59:53, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 04:00:13
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x5470 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 03:59:53, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 04:00:13
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x47B0 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 04:01:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 04:01:35
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Cprojects\CPU\proccesor\proc.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D27441 в функции RtlGetNtGlobalFlags(). Попытка прочесть данные по адресу 0x4021FFFF в модуле C:\Windows\SYSTEM32\ntdll.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400], Instance: 0x005566BC (32-bit), Flags: CMdRe0, Thread: 0x47B0 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D27441 in C:\Windows\SYSTEM32\ntdll.dll: RtlGetNtGlobalFlags()
+# 1 0x77CE3C56 in C:\Windows\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 2 0x76ED7379 in C:\Windows\System32\msvcrt.dll: free()
+# 3 0x0041C760 in D:\Cprojects\CPU\proccesor\proc.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 172, Date: 2023-08-12 11:12:24 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\mnmnm\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 13 2023 04:01:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Nov 13 2023 04:01:35
+
+Run file:	D:\Cprojects\CPU\proccesor\proc.exe
+Directory:	D:\Cprojects\CPU\proccesor
+
+--------------------------------------------------

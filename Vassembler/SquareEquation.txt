@@ -1,30 +1,37 @@
 in
 in
 in
-pop rcx
+pop rcx                # ввод элементов
 pop rbx
 pop rax
+
+
 push 0
-push rax
+push rax               # проверка на линейное
 je line
-call sq
-hlt
+
+
+call sq                # вызов функции для решения уравнения
+jmp halt
 
 sq:
     call discr
     push 0
     push rdx
-    je discr_null
-    jb no_solve
+    je discr_null      # проверка на дискримант равный 0.   
+    jb no_solve        
     push rdx
     sqrt
     pop rdx
+
+    push 2
+    out                # количество решений
 
     push -1
     push rbx
     mult
     push rdx
-    sub
+    sub                # первый корень 
     push 2
     push rax
     mult
@@ -35,7 +42,7 @@ sq:
     push rbx
     mult
     push rdx
-    add
+    add                # второй корень
     push 2
     push rax
     mult
@@ -52,8 +59,13 @@ line:
     mult
     push rbx
     div
+
+    push 1
+    out               # количество решений
+
     out
-hlt 
+    jmp halt
+ret
 
 discr:
     push rbx
@@ -69,6 +81,9 @@ discr:
 ret
 
 discr_null:
+    push 1
+    out                 # количество решений
+
     push -1
     push rbx
     mult
@@ -77,21 +92,31 @@ discr_null:
     mult
     div
     out
-hlt
+    jmp halt
+ret
      
 inf_sol:
     push rcx
     push 0
     jne no_solve
     call pr_inf_sol
-hlt
+    jmp halt
+ret
 
 no_solve:
-    push -2
+    push 0
+    out             # количество решений
+
+    push -2         # если нет решений, выводим 2
     out
-hlt
+    jmp halt
+ret
 
 pr_inf_sol:
-    push -1	
+    push -1	        # если решений бесконеное число, выводим -1
     out
+    jmp halt
 ret
+
+halt:
+    hlt

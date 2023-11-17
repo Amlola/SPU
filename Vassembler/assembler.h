@@ -15,6 +15,7 @@ enum AsmError
     NOT_FOUND_LABEL,
     INPUT_FILE_NOT_FOUND,
     OUTPUT_FILE_NOT_FOUND,
+    COMAND_WITHOUT_ARG,
     SUCCESS,
     };
 
@@ -26,7 +27,8 @@ const char* const VAASMERROR[SUCCESS] =
     "ALLOC ERROR",
     "NOT FOUND LABEL",
     "INPUT FILE NOT FOUND",
-    "OUTPUT FILE NOT FOUND"
+    "OUTPUT FILE NOT FOUND",
+    "COMAND DOESN'T HAVE ARG"
     };
 
 
@@ -78,7 +80,7 @@ AsmError FillBufferWithReg(char StrArg[], VAssembler* ass, FILE* listing, size_t
 
 void AddLabel(char comand[], Label* label, size_t ip);
 
-int  FindLabel(Label* label, char arg[]);
+double FindLabel(Label* label, char arg[]);
 
 AsmError VAssemblerInit(VAssembler* ass, Text* data);
 
@@ -88,7 +90,7 @@ AsmError WorkWithComand(String* text, size_t Nstring, size_t Ncomand, VAssembler
 
 AsmError FillBufferWithLabel(Label* label, char StrArg[], VAssembler* ass, FILE* listing, size_t Nstring, size_t Ncomand); 
 
-AsmError FillBuffer(VAssembler* ass, int arg, FILE* listing, size_t Nstring, size_t Ncomand);
+AsmError FillBuffer(VAssembler* ass, double arg, FILE* listing, size_t Nstring, size_t Ncomand);
 
 AsmError WorkWithArgument(String* text, size_t Nstring, size_t Ncomand, VAssembler* ass, Label* label, FILE* listing);
 

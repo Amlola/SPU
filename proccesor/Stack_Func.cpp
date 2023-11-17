@@ -13,7 +13,7 @@ void StackCtor(Stack* stk)
     stk->stack_size = sz;
     stk->stack_pos = 0;
 
-    stk->stack_status = NO_ERROR;
+    stk->stack_status = NO_ERROR1;
 
     stk->stack_data = ((Stack_type*)calloc(stk->stack_size * sizeof(Stack_type) + StackCanarySize(), sizeof(char)));
 
@@ -313,7 +313,7 @@ ON_DUMP
                 }
             )
 
-        if (stk->stack_status != NO_ERROR) 
+        if (stk->stack_status != NO_ERROR1) 
             {
             for (size_t j = 0; j < NUMBER_OF_ERROR; j++)
                 {

@@ -5,10 +5,8 @@ call center_coord
 again:
     call draw_circle
 
-    push 44      #
-    push 7       #
+    push 6.28    #
                  # проверяем, что угол меньше 2п
-    div          #
     push rdx     # 
                  #
     jb again     # возвращаемся к call draw_circle 
@@ -34,9 +32,7 @@ draw_circle:
 
     call center_coord
 
-    push 44
-    push 7
-    div
+    push 6.28
     push 40
     div
     push rdx
@@ -74,7 +70,9 @@ initial_conditions:
     push 6       # радиус
     pop rcx
 
-    push 0       # начальный угол
+    push 6.28       # начальный угол
+    push 40
+    div
     pop rdx
 ret
 

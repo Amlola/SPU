@@ -2,7 +2,6 @@
 
 
 
-
 AsmError Assembler(FILE* file_to_bin, FILE* listing, String* text, Text* data, Label* label, VAssembler* ass) 
     { 
     assert(text);
@@ -80,6 +79,17 @@ AsmError WorkWithComand(String* text, size_t Nstring, size_t Ncomand, VAssembler
     
     else
         {
+        char arg[MaxLenArg] = {};
+
+        sscanf(((text + Nstring)->adress), "%*s %s", &arg);
+
+        if (!IsClear(arg) && ass->status == GoAssembler) 
+            {
+            printf("%s line: %d\n", VAASMERROR[COMAND_WITHOUT_ARG], Nstring);
+
+            return COMAND_WITHOUT_ARG;
+            }
+
         ass->Buffer[ass->ip] = ass->machine_code;
 
         ass->ip += 1;
@@ -103,7 +113,7 @@ AsmError WorkWithArgument(String* text, size_t Nstring, size_t Ncomand, VAssembl
 
     ParseArgument(listing, arg, ass, label, text, Nstring, Ncomand);
 
-    ass->ip += sizeof(int) + 1;
+    ass->ip += sizeof(double) + 1;
 
     return SUCCESS;
     }
@@ -112,15 +122,17 @@ AsmError WorkWithArgument(String* text, size_t Nstring, size_t Ncomand, VAssembl
 
 AsmError ParseArgument(FILE* listing, char arg[], VAssembler* ass, Label* label, String* text, size_t Nstring, size_t Ncomand)
     {
+    double DoubleArg = 0;
+
     int IntArg = 0;
 
     char StrArg[MaxLenArg] = "";
 
-    if (sscanf(arg, "%d", &IntArg) == 1) 
+    if (sscanf(arg, "%lf", &DoubleArg) == 1) 
         { 
         ass->machine_code |= IMM;
 
-        FillBuffer(ass, IntArg, listing, Nstring, Ncomand);
+        FillBuffer(ass, DoubleArg, listing, Nstring, Ncomand);
         } 
 
     else if (sscanf(arg, "[%d]", &IntArg) == 1) 
@@ -130,7 +142,7 @@ AsmError ParseArgument(FILE* listing, char arg[], VAssembler* ass, Label* label,
         FillBuffer(ass, IntArg, listing, Nstring, Ncomand);
         } 
 
-    else if (sscanf(arg, "[%[a-z]]", &StrArg) == 1) 
+    else if (sscanf(arg, "[%[a-z]]", &StrArg) == 1)
         { 
         ass->machine_code |= REG | RAM;
 
@@ -174,11 +186,18 @@ AsmError FillBufferWithReg(char StrArg[], VAssembler* ass, FILE* listing, size_t
 
     if (IsReg(StrArg, &arg)) 
         {
-        *(int*)(ass->Buffer + ass->ip + 1) = arg;
+        *(double*)(ass->Buffer + ass->ip + 1) = (double)arg;
 
         if (ass->status == GoAssembler) 
             {
-            fprintf(listing, "%06d %10s %10s   %08d   %08X   %08d   %08X\n", Nstring + 1, CMD_LIST[Ncomand].name_comand, REG_LIST[arg - 1], ass->machine_code, ass->machine_code, arg, arg);
+            fprintf(listing, 
+                    "%06d %10s %10s   %08d   %08X   %08d   %08X\n", 
+                    Nstring + 1, CMD_LIST[Ncomand].name_comand, 
+                    REG_LIST[arg - 1], 
+                    ass->machine_code, 
+                    ass->machine_code, 
+                    arg, 
+                    arg);
             }
         }
     return SUCCESS;
@@ -188,9 +207,9 @@ AsmError FillBufferWithReg(char StrArg[], VAssembler* ass, FILE* listing, size_t
 
 AsmError FillBufferWithLabel(Label* label, char StrArg[], VAssembler* ass, FILE* listing, size_t Nstring, size_t Ncomand) 
     {
-    int arg = FindLabel(label, StrArg);
+    double arg = FindLabel(label, StrArg);
 
-    if (arg != NotFoundLabel)
+    if ((int)arg != NotFoundLabel)
         {
         FillBuffer(ass, arg, listing, Nstring, Ncomand);
         }
@@ -204,7 +223,7 @@ AsmError FillBufferWithLabel(Label* label, char StrArg[], VAssembler* ass, FILE*
             return NOT_FOUND_LABEL;
             }
 
-        *(int*)(ass->Buffer + ass->ip + 1) = 0;
+        *(double*)(ass->Buffer + ass->ip + 1) = 0;
         }
     
     return SUCCESS;
@@ -212,13 +231,13 @@ AsmError FillBufferWithLabel(Label* label, char StrArg[], VAssembler* ass, FILE*
 
 
 
-AsmError FillBuffer(VAssembler* ass, int arg, FILE* listing, size_t Nstring, size_t Ncomand) 
+AsmError FillBuffer(VAssembler* ass, double arg, FILE* listing, size_t Nstring, size_t Ncomand) 
     {
-    *(int*)(ass->Buffer + ass->ip + 1) = arg;
+    *(double*)(ass->Buffer + ass->ip + 1) = arg;
 
     if (ass->status == GoAssembler)
         {
-        fprintf(listing, "%06d %10s %10d   %08d   %08X   %08d   %08X\n", Nstring + 1, CMD_LIST[Ncomand].name_comand, arg, ass->machine_code, ass->machine_code, arg, arg);
+        fprintf(listing, "%06d %10s %10lf   %08d   %08X   %08lf   %X\n", Nstring + 1, CMD_LIST[Ncomand].name_comand, arg, ass->machine_code, ass->machine_code, arg, arg);
         }
     
     return SUCCESS;
@@ -228,7 +247,7 @@ AsmError FillBuffer(VAssembler* ass, int arg, FILE* listing, size_t Nstring, siz
 
 AsmError VAssemblerInit(VAssembler* ass, Text* data) 
     {
-    ass->Buffer = (char*)calloc((sizeof(char) + sizeof(int)) * data->count_n, sizeof(char));
+    ass->Buffer = (char*)calloc((sizeof(char) + sizeof(double)) * data->count_n, sizeof(char));
 
     if (!ass->Buffer) 
         {
@@ -268,7 +287,7 @@ AsmError LabelCtor(Label* label)
 
 
 
-int FindLabel(Label* label, char arg[]) 
+double FindLabel(Label* label, char arg[]) 
     {
     for (size_t i = 0; i < label->pos; i++) 
         {

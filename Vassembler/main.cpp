@@ -11,6 +11,7 @@ int main(int argc, char* argv[])
     if (input_file == nullptr) 
         {
         printf("%s\n", VAASMERROR[INPUT_FILE_NOT_FOUND]);
+        
         return INPUT_FILE_NOT_FOUND;
         }
 
@@ -26,6 +27,7 @@ int main(int argc, char* argv[])
     if (file_output_bin == nullptr || listing == nullptr) 
         {
         printf("%s\n", VAASMERROR[OUTPUT_FILE_NOT_FOUND]);
+
         return OUTPUT_FILE_NOT_FOUND;
         }
 
@@ -45,14 +47,11 @@ int main(int argc, char* argv[])
 
     Assembler(file_output_bin, listing, data.str, &data, &label, &ass);
 
-    free(ass.Buffer);
-
-    VAssemblerInit(&ass, &data);
+    ass.ip = 0;
     
     ass.status = GoAssembler;
 
     Assembler(file_output_bin, listing, data.str, &data, &label, &ass);
-
 
 
 

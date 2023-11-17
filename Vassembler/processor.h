@@ -18,6 +18,6 @@ static int Calcul(CPU* processor, char* Buffer, long long BufferSize, size_t ip)
 
 void Proccesor(char* Buffer, long long BufSize, CPU* processor); 
 
-static double GetArg(CPU* processor, size_t ip, char* Buffer);
+static double* GetArg(CPU* processor, size_t ip, char* Buffer);
 
 static int CmpDouble(const double a, const double b); 

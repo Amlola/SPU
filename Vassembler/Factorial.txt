@@ -1,46 +1,39 @@
-in
-pop rax
-push rax
-pop rcx
-
-call check_n_null
-
-call factorial
-
-end:
-    push rcx
-    out
-    hlt
+jmp main
 
 factorial:
     push rax
+
+    push rax
+    push 1
+    je end
+    pop rax
+    pop rax
+
+    push rax
     push 1
     sub
-    push 0
-    je end
+    pop rax
 
-push rax
-push 1
-sub
-push rcx
-mult
-pop rcx
+    call factorial    # factorial(n - 1) * n
 
-push rax
-push 1
-sub
-pop rax
-
-call factorial
-ret
-
-check_n_null:
     push rax
-    push 0
-    je n_is_null
+    mult
+    pop rax
     ret
 
-n_is_null:
-    push 1
+
+    end:
+        pop rax
+        pop rax
+        push rax
+        mult
+        pop rax
+        ret
+
+main:
+    in
+    pop rax
+    call factorial
+    push rax
     out
-    hlt
+hlt
