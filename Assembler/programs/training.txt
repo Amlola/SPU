@@ -1,0 +1,5 @@
+push 3
+pop rax
+push 10
+pop [rax+5]
+hlt
